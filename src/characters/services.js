@@ -1,7 +1,7 @@
 const { ObjectId } = require('mongodb');
 const { Database } = require('../database/index');
 
-const COLLECTION = 'products'
+const COLLECTION = 'characters'
 
 const getAll = async () => {
   const collection = await Database(COLLECTION)
