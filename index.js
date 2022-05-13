@@ -2,8 +2,8 @@ const express = require('express');
 const debug = require('debug')('app:main');
 
 const { Config } = require('./src/config/index');
-const { ProductsAPI } = require('./src/products/index');
-const { UsersAPI } = require('./src/users/index');
+const { CharactersAPI } = require('./src/characters/index');
+const { TitansAPI } = require('./src/titans/index');
 const { IndexAPI, NotFoundAPI } = require('./src/index/index');
 
 const app = express();
@@ -12,8 +12,8 @@ app.use(express.json())
 
 //!Modulos
 IndexAPI(app)
-ProductsAPI(app)
-UsersAPI(app)
+CharactersAPI(app)
+TitansAPI(app)
 NotFoundAPI(app)
 
 app.listen(Config.port, () => {

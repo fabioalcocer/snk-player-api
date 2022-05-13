@@ -1,14 +1,14 @@
 const createError = require('http-errors');
 const debug = require('debug')('app:module-users-controller');
 
-const { UsersService } = require('./services');
+const { TitansService } = require('./services');
 const { Response } = require('../common/response');
 
-module.exports.UsersController = {
-  getUsers: async (req, res) => {
+module.exports.TitansController = {
+  getTitans: async (req, res) => {
     try {
-      let users = await UsersService.getAll()
-      Response.success(res, 200, "List of users", users)
+      let titans = await TitansService.getAll()
+      Response.success(res, 200, "Titans", titans)
     }
     catch (error) {
       debug(error)
@@ -16,15 +16,15 @@ module.exports.UsersController = {
     }
   },
 
-  getUser: async (req, res) => {
+  getTitan: async (req, res) => {
     try {
       const { params: { id } } = req
-      let user = await UsersService.getById(id)
+      let titan = await TitansService.getById(id)
 
-      if (!user) {
+      if (!titan) {
         Response.error(res, new createError.NotFound())
       } else {
-        Response.success(res, 200, `User ${id}`, user)
+        Response.success(res, 200, `User ${id}`, titan)
       }
     }
     catch (error) {
@@ -33,7 +33,7 @@ module.exports.UsersController = {
     }
   },
 
-  createUser: async (req, res) => {
+  createTitan: async (req, res) => {
     try {
       const { data } = req
 
@@ -41,8 +41,8 @@ module.exports.UsersController = {
         Response.error(res, new createError.BadRequest())
       }
 
-      const insertedId = await UsersService.create(data)
-      Response.success(res, 201, 'User created successfully', insertedId)
+      const insertedId = await TitansService.create(data)
+      Response.success(res, 201, 'Titan created successfully', insertedId)
     }
     catch (error) {
       debug(error)

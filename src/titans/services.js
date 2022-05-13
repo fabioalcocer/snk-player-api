@@ -22,7 +22,7 @@ const create = async (product) => {
 //TODO update
 //TODO delete
 
-module.exports.UsersService = {
+module.exports.TitansService = {
   getAll,
   getById,
   create,
