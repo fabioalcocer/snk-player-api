@@ -24,7 +24,7 @@ module.exports.CharactersController = {
       if (!character) {
         Response.error(res, new createError.NotFound())
       } else {
-        Response.success(res, 200, `Product ${id}`, character)
+        Response.success(res, 200, `Character ${id}`, character)
       }
     }
     catch (error) {
