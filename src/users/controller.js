@@ -20,8 +20,8 @@ module.exports.UsersController = {
     try {
       const { params: { id } } = req
       let user = await UsersService.getById(id)
-      
-      if(!user) {
+
+      if (!user) {
         Response.error(res, new createError.NotFound())
       } else {
         Response.success(res, 200, `User ${id}`, user)
@@ -35,13 +35,13 @@ module.exports.UsersController = {
 
   createUser: async (req, res) => {
     try {
-      const { body } = req
+      const { data } = req
 
-      if (!body || Object.keys(body).length === 0) {
+      if (!data || Object.keys(data).length === 0) {
         Response.error(res, new createError.BadRequest())
       }
 
-      const insertedId = await UsersService.create(body)
+      const insertedId = await UsersService.create(data)
       Response.success(res, 201, 'User created successfully', insertedId)
     }
     catch (error) {

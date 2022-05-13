@@ -20,8 +20,8 @@ module.exports.ProductsController = {
     try {
       const { params: { id } } = req
       let product = await ProductsService.getById(id)
-      
-      if(!product) {
+
+      if (!product) {
         Response.error(res, new createError.NotFound())
       } else {
         Response.success(res, 200, `Product ${id}`, product)
@@ -35,13 +35,13 @@ module.exports.ProductsController = {
 
   createProduct: async (req, res) => {
     try {
-      const { body } = req
+      const { data } = req
 
-      if (!body || Object.keys(body).length === 0) {
+      if (!data || Object.keys(data).length === 0) {
         Response.error(res, new createError.BadRequest())
       }
 
-      const insertedId = await ProductsService.create(body)
+      const insertedId = await ProductsService.create(data)
       Response.success(res, 201, 'Product created successfully', insertedId)
     }
     catch (error) {

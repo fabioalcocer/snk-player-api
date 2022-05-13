@@ -8,11 +8,11 @@ module.exports.IndexAPI = (app) => {
 
   router.get("/", (req, res) => {
     const menu = {
-      products: `https://${req.headers.host}/api/products`,
-      users: `https://${req.headers.host}/api/users`
+      characters: `https://${req.headers.host}/api/characters`,
+      titans: `https://${req.headers.host}/api/titans`
     }
 
-    Response.success(res, 200, "API Inventory", menu)
+    Response.success(res, 200, "Attack on Titan API", menu)
   })
 
   app.use("/", router)
