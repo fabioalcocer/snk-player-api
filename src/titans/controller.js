@@ -1,5 +1,5 @@
 const createError = require('http-errors');
-const debug = require('debug')('app:module-users-controller');
+const debug = require('debug')('app:module-titans-controller');
 
 const { TitansService } = require('./services');
 const { Response } = require('../common/response');
@@ -35,13 +35,13 @@ module.exports.TitansController = {
 
   createTitan: async (req, res) => {
     try {
-      const { data } = req
+      const { body } = req
 
-      if (!data || Object.keys(data).length === 0) {
+      if (!body || Object.keys(body).length === 0) {
         Response.error(res, new createError.BadRequest())
       }
 
-      const insertedId = await TitansService.create(data)
+      const insertedId = await TitansService.create(body)
       Response.success(res, 201, 'Titan created successfully', insertedId)
     }
     catch (error) {

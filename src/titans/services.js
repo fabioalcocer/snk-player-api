@@ -13,9 +13,9 @@ const getById = async (id) => {
   return collection.findOne({ _id: ObjectId(id) })
 }
 
-const create = async (product) => {
+const create = async (titan) => {
   const collection = await Database(COLLECTION)
-  let result = await collection.insertOne(product)
+  let result = await collection.insertOne(titan)
   return result.insertedId
 }
 

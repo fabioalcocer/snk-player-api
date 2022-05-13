@@ -1,5 +1,5 @@
 const createError = require('http-errors');
-const debug = require('debug')('app:module-products-controller');
+const debug = require('debug')('app:module-characters-controller');
 
 const { CharactersService } = require('./services');
 const { Response } = require('../common/response');
@@ -35,18 +35,18 @@ module.exports.CharactersController = {
 
   createCharacter: async (req, res) => {
     try {
-      const { data } = req
+      const { body } = req
 
-      if (!data || Object.keys(data).length === 0) {
+      if (!body || Object.keys(body).length === 0) {
         Response.error(res, new createError.BadRequest())
       }
 
-      const insertedId = await CharactersService.create(data)
+      const insertedId = await CharactersService.create(body)
       Response.success(res, 201, 'Character created successfully', insertedId)
     }
     catch (error) {
       debug(error)
       Response.error(res)
     }
-  },
+  }
 }
