@@ -19,10 +19,14 @@ const create = async (titan) => {
   return result.insertedId
 }
 
-//TODO delete
 const deleteById = async (id) => {
   const collection = await Database(COLLECTION)
   return collection.deleteOne({ _id: ObjectId(id) })
+}
+
+const updateById = async (id, titan) => {
+  const collection = await Database(COLLECTION)
+  return collection.updateOne({ _id: ObjectId(id) }, titan)
 }
 
 
@@ -32,5 +36,6 @@ module.exports.TitansService = {
   getAll,
   getById,
   create,
-  deleteById
+  deleteById,
+  updateById
 }

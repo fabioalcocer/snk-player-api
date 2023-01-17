@@ -10,9 +10,9 @@ module.exports.TitansAPI = (app) => {
     .get('/:id', TitansController.getTitan)
     .post('/', TitansController.createTitan)
     .delete('/:id', TitansController.deleteTitan)
+    .put('/:id', TitansController.updateTitan)
 
   //TODO UPDATE
-  //TODO DELETE
 
   app.use('/api/titans', router)
 }

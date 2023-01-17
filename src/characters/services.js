@@ -19,6 +19,11 @@ const create = async (character) => {
   return result.insertedId
 }
 
+const deleteById = async (id) => {
+  const collection = await Database(COLLECTION)
+  return collection.deleteOne({ _id: ObjectId(id) })
+}
+
 
 //TODO update
 //TODO delete
@@ -27,4 +32,5 @@ module.exports.CharactersService = {
   getAll,
   getById,
   create,
+  deleteById
 }

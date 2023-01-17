@@ -8,9 +8,8 @@ module.exports.CharactersController = {
   getCharacters: async (req, res) => {
     try {
       let characters = await CharactersService.getAll()
-      Response.success(res, 200, "Characters", characters)
-    }
-    catch (error) {
+      Response.success(res, 200, 'Characters', characters)
+    } catch (error) {
       debug(error)
       Response.error(res)
     }
@@ -18,7 +17,9 @@ module.exports.CharactersController = {
 
   getCharacter: async (req, res) => {
     try {
-      const { params: { id } } = req
+      const {
+        params: { id },
+      } = req
       let character = await CharactersService.getById(id)
 
       if (!character) {
@@ -26,8 +27,7 @@ module.exports.CharactersController = {
       } else {
         Response.success(res, 200, `Character ${id}`, character)
       }
-    }
-    catch (error) {
+    } catch (error) {
       debug(error)
       Response.error(res)
     }
@@ -42,11 +42,33 @@ module.exports.CharactersController = {
       }
 
       const insertedId = await CharactersService.create(body)
-      Response.success(res, 201, 'Character created successfully', insertedId)
-    }
-    catch (error) {
+      Response.success(
+        res,
+        201,
+        'Character created successfully',
+        insertedId
+      )
+    } catch (error) {
       debug(error)
       Response.error(res)
     }
-  }
+  },
+
+  deleteTitan: async (req, res) => {
+    try {
+      const {
+        params: { id },
+      } = req
+      let titan = await CharactersService.deleteById(id)
+
+      if (!titan) {
+        Response.error(res, new createError.NotFound())
+      } else {
+        Response.success(res, 200, `Character Delete ${id}`, titan)
+      }
+    } catch (error) {
+      debug(error)
+      Response.error(res)
+    }
+  },
 }
