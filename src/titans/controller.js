@@ -24,7 +24,7 @@ module.exports.TitansController = {
       if (!titan) {
         Response.error(res, new createError.NotFound())
       } else {
-        Response.success(res, 200, `User ${id}`, titan)
+        Response.success(res, 200, `Titan ${id}`, titan)
       }
     }
     catch (error) {
@@ -49,4 +49,21 @@ module.exports.TitansController = {
       Response.error(res)
     }
   },
+  
+  deleteTitan: async (req, res) => {
+    try {
+      const { params: { id } } = req
+      let titan = await TitansService.deleteById(id)
+
+      if (!titan) {
+        Response.error(res, new createError.NotFound())
+      } else {
+        Response.success(res, 200, `Titan Delete ${id}`, titan)
+      }
+    }
+    catch (error) {
+      debug(error)
+      Response.error(res)
+    }
+  }
 }

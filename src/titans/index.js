@@ -9,6 +9,7 @@ module.exports.TitansAPI = (app) => {
     .get('/', TitansController.getTitans)
     .get('/:id', TitansController.getTitan)
     .post('/', TitansController.createTitan)
+    .delete('/:id', TitansController.deleteTitan)
 
   //TODO UPDATE
   //TODO DELETE
