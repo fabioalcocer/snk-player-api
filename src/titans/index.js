@@ -12,7 +12,5 @@ module.exports.TitansAPI = (app) => {
     .delete('/:id', TitansController.deleteTitan)
     .put('/:id', TitansController.updateTitan)
 
-  //TODO UPDATE
-
   app.use('/api/titans', router)
 }

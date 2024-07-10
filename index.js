@@ -1,5 +1,6 @@
 const express = require('express');
 const debug = require('debug')('app:main');
+const cors = require('cors')
 
 const { Config } = require('./src/config/index');
 const { CharactersAPI } = require('./src/characters/index');
@@ -8,6 +9,7 @@ const { IndexAPI, NotFoundAPI } = require('./src/index/index');
 
 const app = express();
 
+app.use(cors())
 app.use(express.json())
 
 //!Modulos

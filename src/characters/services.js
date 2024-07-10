@@ -24,13 +24,15 @@ const deleteById = async (id) => {
   return collection.deleteOne({ _id: ObjectId(id) })
 }
 
-
-//TODO update
-//TODO delete
+const updateById = async (id, character) => {
+  const collection = await Database(COLLECTION)
+  return collection.updateOne({ _id: ObjectId(id) }, { $set: character })
+}
 
 module.exports.CharactersService = {
   getAll,
   getById,
   create,
-  deleteById
+  deleteById,
+  updateById
 }

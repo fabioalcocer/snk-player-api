@@ -1,5 +1,5 @@
-const { ObjectId } = require('mongodb');
-const { Database } = require('../database/index');
+const { ObjectId } = require('mongodb')
+const { Database } = require('../database/index')
 
 const COLLECTION = 'titans'
 
@@ -26,16 +26,13 @@ const deleteById = async (id) => {
 
 const updateById = async (id, titan) => {
   const collection = await Database(COLLECTION)
-  return collection.updateOne({ _id: ObjectId(id) }, titan)
+  return collection.updateOne({ _id: ObjectId(id) }, { $set: titan })
 }
-
-
-//TODO update
 
 module.exports.TitansService = {
   getAll,
   getById,
   create,
   deleteById,
-  updateById
+  updateById,
 }

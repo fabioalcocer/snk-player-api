@@ -9,10 +9,8 @@ module.exports.CharactersAPI = (app) => {
     .get('/', CharactersController.getCharacters)
     .get('/:id', CharactersController.getCharacter)
     .post('/', CharactersController.createCharacter)
-    .delete('/:id', CharactersController.deleteTitan)
-
-
-  //TODO UPDATE
+    .delete('/:id', CharactersController.deleteCharacter)
+    .put('/:id', CharactersController.updateCharacter)
 
   app.use('/api/characters', router)
 }

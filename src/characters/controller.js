@@ -1,8 +1,8 @@
-const createError = require('http-errors');
-const debug = require('debug')('app:module-characters-controller');
+const createError = require('http-errors')
+const debug = require('debug')('app:module-characters-controller')
 
-const { CharactersService } = require('./services');
-const { Response } = require('../common/response');
+const { CharactersService } = require('./services')
+const { Response } = require('../common/response')
 
 module.exports.CharactersController = {
   getCharacters: async (req, res) => {
@@ -42,30 +42,44 @@ module.exports.CharactersController = {
       }
 
       const insertedId = await CharactersService.create(body)
-      Response.success(
-        res,
-        201,
-        'Character created successfully',
-        insertedId
-      )
+      Response.success(res, 201, 'Character created successfully', insertedId)
     } catch (error) {
       debug(error)
       Response.error(res)
     }
   },
 
-  deleteTitan: async (req, res) => {
+  deleteCharacter: async (req, res) => {
     try {
       const {
         params: { id },
       } = req
-      let titan = await CharactersService.deleteById(id)
+      let character = await CharactersService.deleteById(id)
 
-      if (!titan) {
+      if (!character) {
         Response.error(res, new createError.NotFound())
       } else {
         Response.success(res, 200, `Character Delete ${id}`, titan)
       }
+    } catch (error) {
+      debug(error)
+      Response.error(res)
+    }
+  },
+
+  updateCharacter: async (req, res) => {
+    try {
+      const {
+        params: { id },
+        body,
+      } = req
+
+      if (!body || Object.keys(body).length === 0) {
+        Response.error(res, new createError.BadRequest())
+      }
+
+      const updatedId = await CharactersService.updateById(id, body)
+      Response.success(res, 201, 'Character updated successfully', updatedId)
     } catch (error) {
       debug(error)
       Response.error(res)

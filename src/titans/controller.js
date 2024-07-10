@@ -42,12 +42,7 @@ module.exports.TitansController = {
       }
 
       const insertedId = await TitansService.create(body)
-      Response.success(
-        res,
-        201,
-        'Titan created successfully',
-        insertedId
-      )
+      Response.success(res, 201, 'Titan created successfully', insertedId)
     } catch (error) {
       debug(error)
       Response.error(res)
@@ -74,23 +69,16 @@ module.exports.TitansController = {
 
   updateTitan: async (req, res) => {
     try {
-      // const { body } = req
       const {
         params: { id },
         body,
       } = req
-
       if (!body || Object.keys(body).length === 0) {
         Response.error(res, new createError.BadRequest())
       }
 
       const updatedId = await TitansService.updateById(id, body)
-      Response.success(
-        res,
-        201,
-        'Titan updated successfully',
-        updatedId
-      )
+      Response.success(res, 201, 'Titan updated successfully', updatedId)
     } catch (error) {
       debug(error)
       Response.error(res)
